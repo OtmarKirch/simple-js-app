@@ -1,4 +1,4 @@
-# A Simple JavaScript App
+# Simple JavaScript App
 ## Description
 This is a simple JavaScript App in development. In order to learn the principles of and how to program with JavaScript, I am building this app. This is work in progress. There is no functionality implemented yet.
 
@@ -12,4 +12,4 @@ To build a small web application with HTML, CSS, and JavaScript that loads data 
 
 ## Current State
 The structure of the project is set up on GitHub in order to continously receive commits.
-The script file `script.js` includes an array of Pokemons which will be used to display later in the project.
+The script file `script.js` includes an array of Pokemons. These Pokemons are listed on the website via JavaScript. Some css is added for styling. 
