@@ -1,4 +1,4 @@
-pokemonList = [
+let pokemonList = [
   {
     name: "Charizard",
     height: 1.7,
@@ -35,20 +35,20 @@ const pokemonListLength = pokemonList.length;
 
 //display all Pokemons in the list
 document.write(`<ul>`);
-for (i = 0; i < pokemonListLength; i++) {
-  const selPokemon = pokemonList[i];
-  if (selPokemon.height < 3) {
+pokemonList.forEach(function(pokemon, i){
+  //const selPokemon = pokemonList[i];
+  if (pokemon.height < 3) {
     document.write(
-      `<li>The ${i + 1}. Pokemon, ${selPokemon.name}, is ${
-        selPokemon.height
+      `<li>The ${i + 1}. Pokemon, ${pokemon.name}, is ${
+        pokemon.height
       } meters tall. </li>`
     );
   } else {
     document.write(
-      `<li>The ${i + 1}. Pokemon, ${selPokemon.name}, is ${
-        selPokemon.height
+      `<li>The ${i + 1}. Pokemon, ${pokemon.name}, is ${
+        pokemon.height
       } meters tall - wow, that's <span class="big">BIG!</span></li>`
     );
   }
-}
+})
 document.write(`</ul>`);
