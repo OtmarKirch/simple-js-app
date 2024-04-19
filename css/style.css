@@ -27,7 +27,7 @@ h1 {
     max-width: 400px;
 }
 
-.container {  
+.container {
     display: block;
     margin: 0 auto;
 }
@@ -66,5 +66,3 @@ li {
         width: 200px;
     }
 }
-
-

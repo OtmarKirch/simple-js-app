@@ -70,7 +70,19 @@ let pokemonRepository = (function () {
       let button = document.createElement("button");
       button.innerText = pokemon.name;
       button.classList.add("pokemon-list--button");
+      //add event listner to button to log details of pokemon in console
+      this.addClickEvent(button, pokemon)
       listElement.appendChild(button);
+    },
+    //Adds an event listener to the button
+    addClickEvent: function (button, pokemon) {
+      button.addEventListener("click", function () {
+        showDetails(pokemon);
+      });
+    },
+    //log details of pokemon in console
+    showDetails: function (pokemon) {
+      console.log(pokemon);
     },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
