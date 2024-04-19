@@ -62,6 +62,16 @@ let pokemonRepository = (function () {
         }
       }
     },
+    //add a button of a given pokemon to the button list
+    addListItem: function (pokemon) {
+      let uiList = document.querySelector(".pokemon-list");
+      let listElement = document.createElement("li");
+      uiList.appendChild(listElement);
+      let button = document.createElement("button");
+      button.innerText = pokemon.name;
+      button.classList.add("pokemon-list--button");
+      listElement.appendChild(button);
+    },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
       return pokemonList.filter((pokemon) => pokemon.name === searchName);
@@ -70,15 +80,7 @@ let pokemonRepository = (function () {
 })();
 
 //display all Pokemons in the list
-document.write(`<ul>`);
-pokemonRepository.getAll().forEach(function (pokemon, i) {
-  let uiList = document.querySelector(".pokemon-list");
-  let listElement = document.createElement("li");
-  uiList.appendChild(listElement)
-  let button = document.createElement("button");
-  button.innerText = pokemon.name;
-  button.classList.add("pokemon-list--button");
-  listElement.appendChild(button)
 
+pokemonRepository.getAll().forEach(function (pokemon) {
+  pokemonRepository.addListItem(pokemon);
 });
-document.write(`</ul>`);
