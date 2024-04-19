@@ -6,10 +6,11 @@
 }
 
 * {
-    background-color: var(--background-webiste);
+    box-sizing: border-box;
 }
 
 body {
+    background-color: var(--background-webiste);
     color: var(--font-color);
     font-family: "Ubuntu", sans-serif;
     font-weight: 400;
@@ -20,13 +21,26 @@ h1 {
     font-family: "Jersey 10", sans-serif;
     font-weight: 400;
     font-style: normal;
-    margin-left: 0.67em;
+    text-align: center;
+    display: block;
+    margin: 0 auto;
+    max-width: 400px;
   }
-  
 
+.container {
+    max-width: 200px;
+    display: block;
+    margin: 0 auto;
+}
+
+ul {
+    margin: 7px 0 0 0;
+    padding: 0;
+}
 
 li {
     list-style-type: none;
+    text-align: center;
 }
 
 .logo {
@@ -39,5 +53,5 @@ li {
     border-width: 4px;
     border-color: var(--button-border-color);
     margin-bottom: 3px;
-    width: 100px;
+    width: 140px;
 }
