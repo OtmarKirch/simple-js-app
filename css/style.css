@@ -1,12 +1,18 @@
+:root {
+    --background-webiste: rgb(20, 54, 150);
+    --font-color: rgb(247, 228, 204);
+    --button-background: black;
+}
+
 * {
-    background-color: rgb(20, 54, 150);
+    background-color: var(--background-webiste);
 }
 
 body {
-    color:antiquewhite;
+    color: var(--font-color);
     font-family: "Ubuntu", sans-serif;
-  font-weight: 400;
-  font-style: normal;
+    font-weight: 400;
+    font-style: normal;
 }
 
 h1 {
@@ -17,10 +23,6 @@ h1 {
   }
   
 
-.big {
-    font-weight: 900;
-    color: rgb(180, 6, 102);
-}
 
 li {
     list-style-type: none;
@@ -28,4 +30,9 @@ li {
 
 .logo {
     width: 50px;
+}
+
+.pokemon-list--button {
+    color: rgb(230, 3, 3);
+    background-color: var(--button-background);
 }
