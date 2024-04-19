@@ -70,14 +70,14 @@ let pokemonRepository = (function () {
       let button = document.createElement("button");
       button.innerText = pokemon.name;
       button.classList.add("pokemon-list--button");
-      //add event listner to button to log details of pokemon in console
-      this.addClickEvent(button, pokemon)
       listElement.appendChild(button);
+      //add event listner to button to log details of pokemon in console
+      pokemonRepository.addClickEvent(button, pokemon);
     },
     //Adds an event listener to the button
     addClickEvent: function (button, pokemon) {
-      button.addEventListener("click", function () {
-        showDetails(pokemon);
+      button.addEventListener("click", () => {
+        pokemonRepository.showDetails(pokemon);
       });
     },
     //log details of pokemon in console
