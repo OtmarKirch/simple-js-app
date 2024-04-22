@@ -12,4 +12,4 @@ To build a small web application with HTML, CSS, and JavaScript that loads data 
 
 ## Current State
 The structure of the project is set up on GitHub in order to continously receive commits.
-The script file `script.js` includes an array of Pokemons. These Pokemons are listed on the website via JavaScript. Some css is added for styling. 
+The script file `script.js` includes an array of Pokemons. These Pokemons are listed as buttons on the website via JavaScript. Some css is added for styling these buttons. A click on the button provides data of the chosen Pokemon in the console. This data is accessed and provided using DOM queries.
