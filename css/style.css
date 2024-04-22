@@ -3,6 +3,7 @@
     --font-color: rgb(247, 228, 204);
     --button-background: rgb(50, 1, 1);
     --button-border-color: rgb(220, 246, 245);
+    --button-text-color: rgb(230, 3, 3);
 }
 
 * {
@@ -47,12 +48,20 @@ li {
 }
 
 .pokemon-list--button {
-    color: rgb(230, 3, 3);
+    color: var(--button-text-color);
     background-color: var(--button-background);
     border-width: 4px;
     border-color: var(--button-border-color);
     margin-bottom: 3px;
     width: 400px;
+}
+
+.loading {
+    color: var(--button-text-color);
+}
+
+.hide {
+    display: none;
 }
 
 @media all and (min-width: 500px) and (max-width: 750px) {

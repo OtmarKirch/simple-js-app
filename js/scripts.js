@@ -4,11 +4,14 @@ let pokemonRepository = (function () {
 
   //gets the list of pokemon from the API
   function loadList() {
-    return fetch(apiUrl, { method: "get" })
+    pokemonRepository.showLoadingMessage();
+    window.showL;
+    return fetch(apiUrl, { method: "GET" })
       .then(function (response) {
         return response.json();
       })
       .then(function (json) {
+        pokemonRepository.hideLoadingMessage();
         json.results.forEach(function (item) {
           let pokemon = {
             name: item.name.charAt(0).toUpperCase() + item.name.substring(1),
@@ -18,6 +21,7 @@ let pokemonRepository = (function () {
         });
       })
       .catch(function (e) {
+        pokemonRepository.hideLoadingMessage();
         console.error(e);
       });
   }
@@ -25,7 +29,7 @@ let pokemonRepository = (function () {
   //accesses the details of the pokemon and adds some to the pokemon object
   function loadDetails(item) {
     let url = item.detailsUrl;
-    return fetch(url, { method: "get" })
+    return fetch(url, { method: "GET" })
       .then(function (response) {
         return response.json();
       })
@@ -71,8 +75,13 @@ let pokemonRepository = (function () {
     //log details of pokemon in console
     showDetails: function (pokemon) {
       loadDetails(pokemon).then(function () {
-        console.log(pokemon);
-      });
+        console.log("Loading");
+        pokemonRepository.showLoadingMessage();
+        console.log(pokemon.imageUrl, pokemon.height, pokemon.types);
+      }).then(()=>{
+        //setTimout only for experiencing the loading message
+        setTimeout(() => pokemonRepository.hideLoadingMessage(), 1000)
+        });
     },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
@@ -80,6 +89,14 @@ let pokemonRepository = (function () {
     },
     loadList: loadList,
     loadDetails: loadDetails,
+    showLoadingMessage: () => {
+      const loadingMessage = document.querySelector(".loading");
+      loadingMessage.classList.remove("hide");
+    },
+    hideLoadingMessage: () => {
+      const loadingMessage = document.querySelector(".loading");
+      loadingMessage.classList.add("hide");
+    },
   };
 })();
 
@@ -87,17 +104,5 @@ pokemonRepository.loadList().then(function () {
   // Now the data is loaded!
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
-    pokemonRepository.loadDetails(pokemon);
   });
 });
-
-//pokemonRepository.loadDetails()
-
-console.log(pokemonRepository.getAll());
-
-//display all Pokemons in the list
-/*
-pokemonRepository.getAll().forEach(function (pokemon) {
-  pokemonRepository.addListItem(pokemon);
-});
-*/
