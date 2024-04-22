@@ -1,4 +1,5 @@
 let pokemonRepository = (function () {
+  /*
   let pokemonList = [
     {
       name: "Charizard",
@@ -31,6 +32,41 @@ let pokemonRepository = (function () {
       abilities: ["turboblaze"],
     },
   ];
+  */
+  let pokemonList = [];
+  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+
+  function loadList() {
+    return fetch(apiUrl).then(function (response) {
+      return response.json();
+    }).then(function (json) {
+      json.results.forEach(function (item) {
+        let pokemon = {
+          name: item.name.charAt(0).toUpperCase() + item.name.substring(1),
+          detailsUrl: item.url
+        };
+        pokemonRepository.add(pokemon);
+      });
+    }).catch(function (e) {
+      console.error(e);
+    })
+  }
+
+  function loadDetails(item) {
+    let url = item.detailsUrl;
+    return fetch(url).then(function (response) {
+      return response.json();
+    }).then(function (details) {
+      // Now we add the details to the item
+      item.imageUrl = details.sprites.front_default;
+      item.height = details.height;
+      item.types = details.types;
+    }).catch(function (e) {
+      console.error(e);
+    });
+  }
+
+  //create all the functions that are returned with the initialisation of the pokemonRepository
   return {
     //return the complete array with all Pokemons
     getAll: function () {
@@ -38,29 +74,8 @@ let pokemonRepository = (function () {
     },
     //adds a single entry to the end of the array in case the entry uses valid keys
     add: function (pokemon) {
-      if (typeof pokemon === "object") {
-        // check whether all keys are included
-        const requiredKeys = ["name", "height", "types", "abilities"];
-        const keys = Object.keys(pokemon);
-        let allKeysIncluded = true;
-        keys.forEach((key) => {
-          console.log(key, requiredKeys.includes(key));
-          if (!requiredKeys.includes(key)) {
-            allKeysIncluded = false;
-          }
-        });
-        if (allKeysIncluded) {
-          // check whether keys are of the right type
-          if (
-            typeof pokemon.name === "string" &&
-            typeof pokemon.height === "number" &&
-            Array.isArray(pokemon.types) &&
-            Array.isArray(pokemon.abilities)
-          ) {
-            pokemonList.push(pokemon);
-          }
-        }
-      }
+      pokemonList.push(pokemon)
+      console.log(pokemonList.length)
     },
     //add a button of a given pokemon to the button list
     addListItem: function (pokemon) {
@@ -88,11 +103,21 @@ let pokemonRepository = (function () {
     findByName: function (searchName) {
       return pokemonList.filter((pokemon) => pokemon.name === searchName);
     },
+    loadList: loadList,
+    loadDetails: loadDetails,
   };
 })();
 
-//display all Pokemons in the list
+pokemonRepository.loadList().then(function() {
+  // Now the data is loaded!
+  pokemonRepository.getAll().forEach(function(pokemon){
+    pokemonRepository.addListItem(pokemon);
+  });
+});
 
+//display all Pokemons in the list
+/*
 pokemonRepository.getAll().forEach(function (pokemon) {
   pokemonRepository.addListItem(pokemon);
 });
+*/
