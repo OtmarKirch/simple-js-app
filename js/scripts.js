@@ -1,69 +1,43 @@
 let pokemonRepository = (function () {
-  /*
-  let pokemonList = [
-    {
-      name: "Charizard",
-      height: 1.7,
-      types: ["fire", "flying"],
-      abilities: ["blaze", "solar-power"],
-    },
-    {
-      name: "Arbok",
-      height: 3.5,
-      types: ["poison"],
-      abilities: ["intimidate", "shed-skin", "unnerve"],
-    },
-    {
-      name: "Ninetales",
-      height: 1.1,
-      types: ["fire"],
-      abilities: ["flash-fire", "drought"],
-    },
-    {
-      name: "Magneton",
-      height: 1,
-      types: ["electric", "steel"],
-      abilities: ["sturdy", "magnet-pull", "analytic"],
-    },
-    {
-      name: "Reshiram",
-      height: 3.2,
-      types: ["dragon", "fire"],
-      abilities: ["turboblaze"],
-    },
-  ];
-  */
   let pokemonList = [];
-  let apiUrl = 'https://pokeapi.co/api/v2/pokemon/?limit=150';
+  let apiUrl = "https://pokeapi.co/api/v2/pokemon/?limit=150";
 
+  //gets the list of pokemon from the API
   function loadList() {
-    return fetch(apiUrl).then(function (response) {
-      return response.json();
-    }).then(function (json) {
-      json.results.forEach(function (item) {
-        let pokemon = {
-          name: item.name.charAt(0).toUpperCase() + item.name.substring(1),
-          detailsUrl: item.url
-        };
-        pokemonRepository.add(pokemon);
+    return fetch(apiUrl, { method: "get" })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (json) {
+        json.results.forEach(function (item) {
+          let pokemon = {
+            name: item.name.charAt(0).toUpperCase() + item.name.substring(1),
+            detailsUrl: item.url,
+          };
+          pokemonRepository.add(pokemon);
+        });
+      })
+      .catch(function (e) {
+        console.error(e);
       });
-    }).catch(function (e) {
-      console.error(e);
-    })
   }
 
+  //accesses the details of the pokemon and adds some to the pokemon object
   function loadDetails(item) {
     let url = item.detailsUrl;
-    return fetch(url).then(function (response) {
-      return response.json();
-    }).then(function (details) {
-      // Now we add the details to the item
-      item.imageUrl = details.sprites.front_default;
-      item.height = details.height;
-      item.types = details.types;
-    }).catch(function (e) {
-      console.error(e);
-    });
+    return fetch(url, { method: "get" })
+      .then(function (response) {
+        return response.json();
+      })
+      .then(function (details) {
+        // Now we add the details to the item
+        item.imageUrl = details.sprites.front_default;
+        item.height = details.height;
+        item.types = details.types;
+      })
+      .catch(function (e) {
+        console.error(e);
+      });
   }
 
   //create all the functions that are returned with the initialisation of the pokemonRepository
@@ -74,8 +48,7 @@ let pokemonRepository = (function () {
     },
     //adds a single entry to the end of the array in case the entry uses valid keys
     add: function (pokemon) {
-      pokemonList.push(pokemon)
-      console.log(pokemonList.length)
+      pokemonList.push(pokemon);
     },
     //add a button of a given pokemon to the button list
     addListItem: function (pokemon) {
@@ -97,7 +70,9 @@ let pokemonRepository = (function () {
     },
     //log details of pokemon in console
     showDetails: function (pokemon) {
-      console.log(pokemon);
+      loadDetails(pokemon).then(function () {
+        console.log(pokemon);
+      });
     },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
@@ -108,12 +83,17 @@ let pokemonRepository = (function () {
   };
 })();
 
-pokemonRepository.loadList().then(function() {
+pokemonRepository.loadList().then(function () {
   // Now the data is loaded!
-  pokemonRepository.getAll().forEach(function(pokemon){
+  pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
+    pokemonRepository.loadDetails(pokemon);
   });
 });
+
+//pokemonRepository.loadDetails()
+
+console.log(pokemonRepository.getAll());
 
 //display all Pokemons in the list
 /*
