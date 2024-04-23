@@ -109,18 +109,18 @@ li {
 .modal p, .modal li {
     list-style: none;
 }
-.modal .closing-button {
+.modal__closing-button {
     color: var(--button-text-color);
     background: none;
     border: 0;
     text-decoration: underline;
 }
 
-.modal button:hover {
+.modal__closing-button:hover {
     color: var(--font-color);
 }
 
-.modal button:active {
+.modal__closing-button:active {
     color: var(--button-active-color);
 }
 

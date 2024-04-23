@@ -146,6 +146,13 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
+window.addEventListener("keydown", (event)=>{
+  let modal = document.querySelector(".modal-container");
+  if (event.key === "Escape" && modal.classList.contains("is-visible")){
+    modal.classList.remove("is-visible");
+  }
+})
+
 //event listener to close modal. Will be removed with further implementation of the modal
 
 let modalContainerHide = document.querySelector(".modal-container");
