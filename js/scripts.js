@@ -108,52 +108,52 @@ let pokemonRepository = (function () {
       let modalHeader = document.createElement("h2");
       modalHeader.innerText = pokemon.name;
       modalHeader.classList.add("modal__header");
+      //creates an img tag for the pokemon image
       let modalImage = document.createElement("img");
       modalImage.innerHTML = `<img class='modal__pokemon-img' src=${pokemon.imageUrl} alt='image of pokemon' />`;
+      //creates a list for the information about the pokemon
       let modalInfo = document.createElement("ul");
       modalInfo.classList.add("modal__info");
       let heightInfo = document.createElement("li");
       heightInfo.innerText = `Height: ${pokemon.height}`;
       let typesInfo = document.createElement("li");
-      typesInfo.innerText = `Types:`;
+      typesInfo.innerText = `Types: `;
       pokemon.types.forEach((type) => {
         typeItem = document.createElement("li");
         typeItem.classList.add("pokemon-type");
-        console.log(type.type.name)
-        typeItem.innerText = type.type.name;
+        typeItem.innerText = type.type.name.charAt(0).toUpperCase() + type.type.name.substring(1) + ", "
         typesInfo.appendChild(typeItem);
       });
+      typesInfo.lastChild.innerHTML = typesInfo.lastChild.innerHTML.slice(0, -2);
       modalInfo.appendChild(heightInfo);
       modalInfo.appendChild(typesInfo);
       let modalExit = document.createElement("button");
       modalExit.innerText = "Get Back";
       modalExit.classList.add("modal__closing-button");
       modalExit.addEventListener("click", () => {
-        modalContainerHide.classList.remove("is-visible");
+        document.querySelector(".modal-container").classList.remove("is-visible");
       });
+      //append all elements of the modal to the modal div
       modal.appendChild(modalHeader);
       modal.appendChild(modalImage);
       modal.appendChild(modalInfo);
       modal.appendChild(modalExit);
+      
     },
   };
 })();
 
+//initializes the creation of the pokemon list
 pokemonRepository.loadList().then(function () {
-  // Now the data is loaded!
   pokemonRepository.getAll().forEach(function (pokemon) {
     pokemonRepository.addListItem(pokemon);
   });
 });
 
+//adds an event listener to close the modal by pressing ESC
 window.addEventListener("keydown", (event)=>{
   let modal = document.querySelector(".modal-container");
   if (event.key === "Escape" && modal.classList.contains("is-visible")){
     modal.classList.remove("is-visible");
   }
 })
-
-//event listener to close modal. Will be removed with further implementation of the modal
-
-let modalContainerHide = document.querySelector(".modal-container");
-let buttonClose = document.querySelector(".modal__closing-button");

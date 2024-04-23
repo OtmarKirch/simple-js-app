@@ -45,6 +45,10 @@ li {
     text-align: center;
 }
 
+li li{
+    display: inline;
+}
+
 .logo {
     width: 50px;
 }
@@ -86,8 +90,14 @@ li {
     overflow: auto;
 }
 
-.modal {
-
+.modal { 
+    margin: 0 auto;
+    margin-top: 50px;
+    margin-bottom: 50px;
+    width: 400px;
+    border-width: 5px;
+    border-style: dashed;
+    border-color: var(--button-border-color);
 }
 
 .modal h2 {
@@ -97,16 +107,17 @@ li {
     text-align: center;
     display: block;
     margin: 0 auto;
+    margin-top: 20px;
     max-width: 400px;
 }
 
 .modal img {
-    width: 300px;
+    width: 380px;
     margin: 0 auto;
     padding: 10px;
 }
 
-.modal p, .modal li {
+.modal li {
     list-style: none;
 }
 .modal__closing-button {
@@ -128,10 +139,34 @@ li {
     .pokemon-list--button {
         width: 300px;
     }
+
+    .modal {
+        width: 300px;
+    }
+
+
+.modal img {
+    width: 280px;
+    margin: 0 auto;
+    padding: 7px;
+}
+
 }
 
 @media all and (max-width: 500px) {
     .pokemon-list--button {
         width: 200px;
     }
+
+    .modal {
+        width: 200px;
+    }
+
+
+.modal img {
+    width: 180px;
+    margin: 0 auto;
+    padding: 5px;
+}
+
 }
