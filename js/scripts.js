@@ -77,6 +77,8 @@ let pokemonRepository = (function () {
       loadDetails(pokemon).then(function () {
         console.log("Loading");
         pokemonRepository.showLoadingMessage();
+        let modalContainer = document.querySelector(".modal-container");
+        modalContainer.classList.add("is-visible")
         console.log(pokemon.imageUrl, pokemon.height, pokemon.types);
       }).then(()=>{
         //setTimout only for experiencing the loading message
@@ -106,3 +108,11 @@ pokemonRepository.loadList().then(function () {
     pokemonRepository.addListItem(pokemon);
   });
 });
+
+
+//event listener to close modal. Will be removed with further implementation of the modal
+let modalContainerHide = document.querySelector(".modal-container")
+let buttonClose = document.querySelector(".closing-button")
+buttonClose.addEventListener("click", ()=>{
+  modalContainerHide.classList.remove("is-visible")
+})
