@@ -110,7 +110,10 @@ let pokemonRepository = (function () {
       modalHeader.classList.add("modal__header");
       //creates an img tag for the pokemon image
       let modalImage = document.createElement("img");
-      modalImage.innerHTML = `<img class='modal__pokemon-img' src=${pokemon.imageUrl} alt='image of pokemon' />`;
+      //modalImage.innerHTML = `<img class='modal__pokemon-img' src=${pokemon.imageUrl} alt='image of pokemon' />`;
+      modalImage.classList.add('modal__pokemon-img')
+      modalImage.setAttribute("src", pokemon.imageUrl)
+      modalImage.setAttribute("alt", `image of ${pokemon.name}`)
       //creates a list for the information about the pokemon
       let modalInfo = document.createElement("ul");
       modalInfo.classList.add("modal__info");

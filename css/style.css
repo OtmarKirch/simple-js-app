@@ -124,6 +124,7 @@ li li{
     color: var(--button-text-color);
     background: none;
     border: 0;
+    margin-top: 10px;
     text-decoration: underline;
 }
 
