@@ -49,6 +49,11 @@ li li{
     display: inline;
 }
 
+header {
+    display: grid;
+    grid-template-columns: auto 1fr;
+}
+
 .logo {
     width: 50px;
 }
@@ -62,8 +67,16 @@ li li{
     width: 400px;
 }
 
+.container-loading {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .loading {
     color: var(--button-text-color);
+    padding: 0;
+    margin: 0;
 }
 
 .hide {

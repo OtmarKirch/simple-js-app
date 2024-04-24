@@ -74,25 +74,22 @@ let pokemonRepository = (function () {
     },
     //log details of pokemon in console
     showDetails: function (pokemon) {
-      loadDetails(pokemon)
-        .then(function () {
-          pokemonRepository.showLoadingMessage();
-          console.log(pokemon.types[0].type.name)
-          pokemonRepository.constructInfoModal(pokemon);
-          let modalContainer = document.querySelector(".modal-container");
-          //setTimout only for experiencing the loading message
-          new Promise((resolve, reject)=>{
-            setTimeout(()=>{
-              modalContainer.classList.add("is-visible");
-              resolve("Loaded successfully")
-            }, 2000)
-          }).then((message) => {
-          console.log(message)
+      loadDetails(pokemon).then(function () {
+        pokemonRepository.showLoadingMessage();
+        console.log(pokemon.types[0].type.name);
+        pokemonRepository.constructInfoModal(pokemon);
+        let modalContainer = document.querySelector(".modal-container");
+        //setTimout only for experiencing the loading message
+        new Promise((resolve, reject) => {
+          setTimeout(() => {
+            modalContainer.classList.add("is-visible");
+            resolve("Loaded successfully");
+          }, 2000);
+        }).then((message) => {
+          console.log(message);
           setTimeout(() => pokemonRepository.hideLoadingMessage(), 1000);
         });
-          
-        })
-        
+      });
     },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
@@ -117,9 +114,9 @@ let pokemonRepository = (function () {
       //creates an img tag for the pokemon image
       let modalImage = document.createElement("img");
       //modalImage.innerHTML = `<img class='modal__pokemon-img' src=${pokemon.imageUrl} alt='image of pokemon' />`;
-      modalImage.classList.add('modal__pokemon-img')
-      modalImage.setAttribute("src", pokemon.imageUrl)
-      modalImage.setAttribute("alt", `image of ${pokemon.name}`)
+      modalImage.classList.add("modal__pokemon-img");
+      modalImage.setAttribute("src", pokemon.imageUrl);
+      modalImage.setAttribute("alt", `image of ${pokemon.name}`);
       //creates a list for the information about the pokemon
       let modalInfo = document.createElement("ul");
       modalInfo.classList.add("modal__info");
@@ -130,24 +127,31 @@ let pokemonRepository = (function () {
       pokemon.types.forEach((type) => {
         typeItem = document.createElement("li");
         typeItem.classList.add("pokemon-type");
-        typeItem.innerText = type.type.name.charAt(0).toUpperCase() + type.type.name.substring(1) + ", "
+        typeItem.innerText =
+          type.type.name.charAt(0).toUpperCase() +
+          type.type.name.substring(1) +
+          ", ";
         typesInfo.appendChild(typeItem);
       });
-      typesInfo.lastChild.innerHTML = typesInfo.lastChild.innerHTML.slice(0, -2);
+      typesInfo.lastChild.innerHTML = typesInfo.lastChild.innerHTML.slice(
+        0,
+        -2
+      );
       modalInfo.appendChild(heightInfo);
       modalInfo.appendChild(typesInfo);
       let modalExit = document.createElement("button");
       modalExit.innerText = "Get Back";
       modalExit.classList.add("modal__closing-button");
       modalExit.addEventListener("click", () => {
-        document.querySelector(".modal-container").classList.remove("is-visible");
+        document
+          .querySelector(".modal-container")
+          .classList.remove("is-visible");
       });
       //append all elements of the modal to the modal div
       modal.appendChild(modalHeader);
       modal.appendChild(modalImage);
       modal.appendChild(modalInfo);
       modal.appendChild(modalExit);
-      
     },
   };
 })();
@@ -160,9 +164,9 @@ pokemonRepository.loadList().then(function () {
 });
 
 //adds an event listener to close the modal by pressing ESC
-window.addEventListener("keydown", (event)=>{
+window.addEventListener("keydown", (event) => {
   let modal = document.querySelector(".modal-container");
-  if (event.key === "Escape" && modal.classList.contains("is-visible")){
+  if (event.key === "Escape" && modal.classList.contains("is-visible")) {
     modal.classList.remove("is-visible");
   }
-})
+});
