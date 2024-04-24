@@ -80,13 +80,19 @@ let pokemonRepository = (function () {
           console.log(pokemon.types[0].type.name)
           pokemonRepository.constructInfoModal(pokemon);
           let modalContainer = document.querySelector(".modal-container");
-          modalContainer.classList.add("is-visible");
-          console.log(pokemon.imageUrl, pokemon.height, pokemon.types);
-        })
-        .then(() => {
           //setTimout only for experiencing the loading message
+          new Promise((resolve, reject)=>{
+            setTimeout(()=>{
+              modalContainer.classList.add("is-visible");
+              resolve("Loaded successfully")
+            }, 2000)
+          }).then((message) => {
+          console.log(message)
           setTimeout(() => pokemonRepository.hideLoadingMessage(), 1000);
         });
+          
+        })
+        
     },
     //returns the entries with the given name as an array
     findByName: function (searchName) {
