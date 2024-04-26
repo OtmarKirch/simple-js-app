@@ -116,7 +116,9 @@ let pokemonRepository = (function () {
           item.classList.add("highlight")
         }else{
           item.classList.remove("highlight")
-          console.log("removed")
+        }
+        if (!prompt) {
+          item.classList.remove("highlight")
         }
         console.log(prompt)
         console.log(item.innerText)

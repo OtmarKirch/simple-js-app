@@ -6,6 +6,11 @@
     --button-text-color: rgb(230, 3, 3);
     --button-active-color: rgba(152, 103, 43, 0.6);
     --modal-overlay-color: rgb(20, 54, 150, 0.9);
+    --yellow: rgb(179, 179, 21);
+
+    --header-font: "Jersey 10", sans-serif;
+    --body-font: "Ubuntu", sans-serif;
+
 }
 
 * {
@@ -15,9 +20,17 @@
 body {
     background-color: var(--background-webiste);
     color: var(--font-color);
-    font-family: "Ubuntu", sans-serif;
+    font-family: var(--body-font);
     font-weight: 400;
     font-style: normal;
+}
+
+.nav-adjustment {
+    height: 80px;
+}
+
+.navbar-brand {
+    font-family: var(--header-font);
 }
 
 h1 {
@@ -41,9 +54,9 @@ h1 {
 }
 
 .list-group-item {
-   background-color: rgb(0,0,0,0);
-   border: 0;
-   padding: 5px
+    background-color: rgb(0, 0, 0, 0);
+    border: 0;
+    padding: 5px
 }
 
 .btn-custom:hover {
@@ -61,14 +74,8 @@ li {
     list-style: none;
 }
 
-li li{
+li li {
     display: inline;
-}
-
-
-.logo {
-    height: 50px;
-    margin: 5px;
 }
 
 .pokemon-list--button {
@@ -77,7 +84,13 @@ li li{
     border-width: 4px;
     border-color: var(--button-border-color);
     margin-bottom: 3px;
-    width: 400px;
+    width: 200px;
+}
+
+.modal img {
+    width: 180px;
+    margin: 0 auto;
+    padding: 5px;
 }
 
 .container-loading {
@@ -101,7 +114,7 @@ li li{
 }
 
 .modal__pokemon-img {
-    width: 380px;
+    width: 180px;
     margin: 0 auto;
     padding: 10px;
 }
@@ -114,108 +127,39 @@ li li{
     color: var(--background-webiste);
 }
 
+.highlight {
+    color: var(--yellow);
+}
+
 /*
-.modal-container {
-    display: none;
-}
-
-.modal-container.is-visible {
-    display: grid;
-    text-align: center;
-
-    position: fixed;
-    padding: 20px;
-    box-sizing: border-box;
-    width: 100%;
-    height: 100%;
-    background-color: var(--modal-overlay-color);
-
-    z-index: 999;
-
-    overflow: auto;
-}
-
-
-.modal { 
-    margin: 0 auto;
-    margin-top: 50px;
-    margin-bottom: 50px;
-    width: 400px;
-    border-width: 5px;
-    border-style: dashed;
-    border-color: var(--button-border-color);
-}
-
-.modal h2 {
-    font-family: "Jersey 10", sans-serif;
-    font-weight: 400;
-    font-style: normal;
-    text-align: center;
-    display: block;
-    margin: 0 auto;
-    margin-top: 20px;
-    max-width: 400px;
-}
-
-
-
-.info-modal li {
-    list-style: none;
-}
-.modal__closing-button {
-    color: var(--button-text-color);
-    background: none;
-    border: 0;
-    margin-top: 10px;
-    text-decoration: underline;
-}
-
-.modal__closing-button:hover {
-    color: var(--font-color);
-}
-
-.modal__closing-button:active {
-    color: var(--button-active-color);
-}
+// Extra small devices (portrait phones, less than 576px)
+// No media query since this is the default in Bootstrap
 */
 
-
-.highlight {
-    color: yellow;
+/* Small devices (landscape phones, 576px and up)*/
+@media (min-width: 576px) {
+    .pokemon-list--button {
+        width: 250px;
+    }
 }
 
-@media all and (min-width: 500px) and (max-width: 750px) {
+/*Medium devices (tablets, 768px and up)*/ 
+@media (min-width: 768px) {
     .pokemon-list--button {
         width: 300px;
     }
-
-    .modal {
-        width: 300px;
-    }
-
-
-.modal img {
-    width: 280px;
-    margin: 0 auto;
-    padding: 7px;
 }
 
-}
-
-@media all and (max-width: 500px) {
+/*Large devices (desktops, 992px and up)*/ 
+@media (min-width: 992px) {
     .pokemon-list--button {
-        width: 200px;
+        width: 350px;
     }
-
-    .modal {
-        width: 200px;
-    }
-
-
-.modal img {
-    width: 180px;
-    margin: 0 auto;
-    padding: 5px;
 }
 
+/*Extra large devices (large desktops, 1200px and up)*/ 
+@media (min-width: 1200px) {
+    .pokemon-list--button {
+        width: 400px;
+    }
 }
