@@ -104,8 +104,8 @@ let pokemonRepository = (function () {
     findByName: function (searchName) {
       return pokemonList.filter((pokemon) => pokemon.name === searchName);
     },
+    //highligts the Pokemons that fit the prompt in the search bar
     promptPokemon: () => {
-      
       const searchBox = document.querySelector(".prompt-pokemon");
       const prompt = searchBox.value;
       console.log(prompt);
@@ -113,9 +113,7 @@ let pokemonRepository = (function () {
       console.log(listItems)
       listItems.forEach((item)=>{
         if (item.innerText.includes(prompt)){
-          
           item.classList.add("highlight")
-          console.log("success")
         }else{
           item.classList.remove("highlight")
           console.log("removed")
@@ -184,6 +182,8 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
+//enables the use of the search bar, highlighting the Pokemons that fit to the prompt
 window.addEventListener("keydown", (event) => {
-  pokemonRepository.promptPokemon();
+  setTimeout(pokemonRepository.promptPokemon, 10)
+  
 });
