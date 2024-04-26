@@ -1,6 +1,6 @@
 # Simple JavaScript App
 ## Description
-This is a simple JavaScript App in development. In order to learn the principles of and how to program with JavaScript, I am building this app. This is work in progress. There is no functionality implemented yet.
+This is a simple JavaScript App in development. In order to learn the principles of and how to program with JavaScript, I am building this app. This is work in progress.
 
 ## Objective
 To build a small web application with HTML, CSS, and JavaScript that loads data from an external API and enables the viewing of data points in detail.
