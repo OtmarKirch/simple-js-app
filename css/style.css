@@ -26,7 +26,7 @@ body {
 }
 
 .nav-adjustment {
-    height: 80px;
+    height: 120px;
 }
 
 .navbar-brand {
@@ -110,7 +110,7 @@ li li {
 }
 
 .modal {
-    color: var(--background-webiste)
+    color: var(--background-webiste);
 }
 
 .modal__pokemon-img {
@@ -120,7 +120,7 @@ li li {
 }
 
 .btn-secondary {
-    background-color: var(--background-webiste)
+    background-color: var(--background-webiste);
 }
 
 [aria-hidden="true"] {
@@ -141,23 +141,27 @@ li li {
     .pokemon-list--button {
         width: 250px;
     }
+
+    .nav-adjustment {
+        height: 80px;
+    }
 }
 
-/*Medium devices (tablets, 768px and up)*/ 
+/*Medium devices (tablets, 768px and up)*/
 @media (min-width: 768px) {
     .pokemon-list--button {
         width: 300px;
     }
 }
 
-/*Large devices (desktops, 992px and up)*/ 
+/*Large devices (desktops, 992px and up)*/
 @media (min-width: 992px) {
     .pokemon-list--button {
         width: 350px;
     }
 }
 
-/*Extra large devices (large desktops, 1200px and up)*/ 
+/*Extra large devices (large desktops, 1200px and up)*/
 @media (min-width: 1200px) {
     .pokemon-list--button {
         width: 400px;

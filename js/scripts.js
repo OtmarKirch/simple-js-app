@@ -84,20 +84,7 @@ let pokemonRepository = (function () {
     //log details of pokemon in console
     showDetails: function (pokemon) {
       loadDetails(pokemon).then(function () {
-        pokemonRepository.showLoadingMessage();
-        console.log(pokemon.types[0].type.name);
         pokemonRepository.constructInfoModal(pokemon);
-        let modalContainer = document.querySelector(".modal-container");
-        //setTimout only for experiencing the loading message
-        new Promise((resolve, reject) => {
-          setTimeout(() => {
-            modalContainer.classList.add("is-visible");
-            resolve("Loaded successfully");
-          }, 2000);
-        }).then((message) => {
-          console.log(message);
-          setTimeout(() => pokemonRepository.hideLoadingMessage(), 1000);
-        });
       });
     },
     //returns the entries with the given name as an array
@@ -109,21 +96,21 @@ let pokemonRepository = (function () {
       const searchBox = document.querySelector(".prompt-pokemon");
       const prompt = searchBox.value;
       console.log(prompt);
-      const listItems = document.querySelectorAll("#pokemon-list .btn")
-      console.log(listItems)
-      listItems.forEach((item)=>{
-        if (item.innerText.includes(prompt)){
-          item.classList.add("highlight")
-        }else{
-          item.classList.remove("highlight")
+      const listItems = document.querySelectorAll("#pokemon-list .btn");
+      console.log(listItems);
+      listItems.forEach((item) => {
+        if (item.innerText.includes(prompt)) {
+          item.classList.add("highlight");
+        } else {
+          item.classList.remove("highlight");
         }
         if (!prompt) {
-          item.classList.remove("highlight")
+          item.classList.remove("highlight");
         }
-        console.log(prompt)
-        console.log(item.innerText)
-        console.log(prompt === item.innerText)
-      })
+        console.log(prompt);
+        console.log(item.innerText);
+        console.log(prompt === item.innerText);
+      });
     },
     loadList: loadList,
     loadDetails: loadDetails,
@@ -184,8 +171,7 @@ pokemonRepository.loadList().then(function () {
   });
 });
 
-//enables the use of the search bar, highlighting the Pokemons that fit to the prompt
+//enables the use of the search bar, highlighting Pokemon buttons that fit the prompt
 window.addEventListener("keydown", (event) => {
-  setTimeout(pokemonRepository.promptPokemon, 10)
-  
+  setTimeout(pokemonRepository.promptPokemon, 10);
 });

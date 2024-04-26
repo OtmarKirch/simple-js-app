@@ -50,7 +50,7 @@
       </div>
     </div>
     <header>
-      <nav class="navbar navbar-light bg-light">
+      <nav class="navbar fixed-top navbar-light bg-light">
         <a class="navbar-brand" href="#">
           <img
             src="./img/logo/pokemon-ball.png"
@@ -65,13 +65,15 @@
           <input
             class="prompt-pokemon form-control mr-sm-2"
             type="search"
-            placeholder="Search"
+            placeholder="Prompt to highlight"
             aria-label="Search"
           />
+          <div class="sr-only">Search text highlights corresponding Pokemon button.</div>
         </form>
       </nav>
     </header>
     <main>
+      <div class="nav-adjustment"></div>
       <div class="container-loading">
         <p class="loading">Loading...</p>
       </div>
