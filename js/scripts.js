@@ -94,25 +94,42 @@ let pokemonRepository = (function () {
     //highligts the Pokemons that fit the prompt in the search bar
     promptPokemon: () => {
       const searchBox = document.querySelector(".prompt-pokemon");
-      const prompt = searchBox.value;
+      const prompt = searchBox.value.toLowerCase();
       console.log(prompt);
       const listItems = document.querySelectorAll("#pokemon-list .btn");
       //highlighting buttons and hiding misses
       listItems.forEach((item) => {
-        if (item.innerText.includes(prompt)) {
-          item.classList.add("highlight");
-          item.parentElement.classList.remove("hide")
+        if (item.innerText.toLowerCase().includes(prompt)) {
+          item.parentElement.classList.remove("hide");
+          pokemonRepository.highlight(item, prompt)
         } else {
-          item.classList.remove("highlight");
-          item.parentElement.classList.add("hide")
+          item.parentElement.classList.add("hide");
+          pokemonRepository.removeHighlight(item)
         }
-        if (!prompt) {
-          item.classList.remove("highlight");
-        }
-        console.log(prompt);
-        console.log(item.innerText);
-        console.log(prompt === item.innerText);
+        
+        
       });
+    },
+    highlight: (item, prompt) => {
+      const namePokemon = item.innerText;
+      const startIndex = namePokemon.indexOf(prompt)
+      
+      let prefix = "";
+      if (startIndex !== -1){
+        if (startIndex !== 0){
+          prefix = namePokemon.substring(0, startIndex)
+        }
+        const highlightString = namePokemon.substring(startIndex, startIndex + prompt.length)
+        const suffix = namePokemon.substring(startIndex + prompt.length, namePokemon.length)
+        const htmlString = `${prefix}<span class="highlight">${highlightString}</span>${suffix}`;
+        item.innerHTML = htmlString
+      }
+    },
+    removeHighlight: (item) => {
+      const spanHighlight = item.querySelector("span")
+      if(spanHighlight){
+        spanHighlight.classList.remove("highlight")
+      }
     },
     loadList: loadList,
     loadDetails: loadDetails,
@@ -174,6 +191,10 @@ pokemonRepository.loadList().then(function () {
 });
 
 //enables the use of the search bar, highlighting Pokemon buttons that fit the prompt
-window.addEventListener("keydown", (event) => {
-  setTimeout(pokemonRepository.promptPokemon, 10);
+
+window.addEventListener("input", (event) => {
+  if (event.target.matches(".prompt-pokemon")) {
+    clearTimeout(window.promptTimeout);
+    window.promptTimeout = setTimeout(pokemonRepository.promptPokemon, 300);
+  }
 });
