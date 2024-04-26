@@ -97,12 +97,14 @@ let pokemonRepository = (function () {
       const prompt = searchBox.value;
       console.log(prompt);
       const listItems = document.querySelectorAll("#pokemon-list .btn");
-      console.log(listItems);
+      //highlighting buttons and hiding misses
       listItems.forEach((item) => {
         if (item.innerText.includes(prompt)) {
           item.classList.add("highlight");
+          item.parentElement.classList.remove("hide")
         } else {
           item.classList.remove("highlight");
+          item.parentElement.classList.add("hide")
         }
         if (!prompt) {
           item.classList.remove("highlight");
