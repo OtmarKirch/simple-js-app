@@ -35,13 +35,23 @@ h1 {
     margin: 0 auto;
 }
 
-ul {
+#pokemon-list {
     margin: 7px 0 0 0;
     padding: 0;
 }
 
+.list-group-item {
+   background-color: rgb(0,0,0,0);
+   border: 0;
+   padding: 5px
+}
+
+.btn-custom:hover {
+    background-color: black;
+    color: var(--background-webiste);
+}
+
 li {
-    list-style-type: none;
     text-align: center;
 }
 

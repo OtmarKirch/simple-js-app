@@ -58,9 +58,13 @@ let pokemonRepository = (function () {
     addListItem: function (pokemon) {
       let uiList = document.querySelector(".pokemon-list");
       let listElement = document.createElement("li");
+      listElement.classList.add("list-group-item")
       uiList.appendChild(listElement);
       let button = document.createElement("button");
       button.innerText = pokemon.name;
+      button.classList.add("btn")
+      button.classList.add("btn-primary")
+      button.classList.add("btn-custom")
       button.classList.add("pokemon-list--button");
       listElement.appendChild(button);
       //add event listner to button to log details of pokemon in console
