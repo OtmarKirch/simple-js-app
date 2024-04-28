@@ -101,34 +101,39 @@ let pokemonRepository = (function () {
       listItems.forEach((item) => {
         if (item.innerText.toLowerCase().includes(prompt)) {
           item.parentElement.classList.remove("hide");
-          pokemonRepository.highlight(item, prompt)
+          pokemonRepository.highlight(item, prompt);
         } else {
           item.parentElement.classList.add("hide");
-          pokemonRepository.removeHighlight(item)
+          pokemonRepository.removeHighlight(item);
         }
-        
-        
       });
     },
+    //highlights characters in prompt
     highlight: (item, prompt) => {
       const namePokemon = item.innerText;
-      const startIndex = namePokemon.indexOf(prompt)
-      
+      const startIndex = namePokemon.indexOf(prompt);
+
       let prefix = "";
-      if (startIndex !== -1){
-        if (startIndex !== 0){
-          prefix = namePokemon.substring(0, startIndex)
+      if (startIndex !== -1) {
+        if (startIndex !== 0) {
+          prefix = namePokemon.substring(0, startIndex);
         }
-        const highlightString = namePokemon.substring(startIndex, startIndex + prompt.length)
-        const suffix = namePokemon.substring(startIndex + prompt.length, namePokemon.length)
+        const highlightString = namePokemon.substring(
+          startIndex,
+          startIndex + prompt.length
+        );
+        const suffix = namePokemon.substring(
+          startIndex + prompt.length,
+          namePokemon.length
+        );
         const htmlString = `${prefix}<span class="highlight">${highlightString}</span>${suffix}`;
-        item.innerHTML = htmlString
+        item.innerHTML = htmlString;
       }
     },
     removeHighlight: (item) => {
-      const spanHighlight = item.querySelector("span")
-      if(spanHighlight){
-        spanHighlight.classList.remove("highlight")
+      const spanHighlight = item.querySelector("span");
+      if (spanHighlight) {
+        spanHighlight.classList.remove("highlight");
       }
     },
     loadList: loadList,
