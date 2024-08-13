@@ -1,4 +1,4 @@
-# Simple JavaScript App: Pokedec
+# Pokedec: A simple JavaScript App
 
 - [Description](#description)
 - [Objective](#objective)
@@ -52,15 +52,18 @@ Bootstrap is used as the framework. The code has been refactored accordingly.
 
 ### Initial Page
 The starting page shows all available Pokemon as buttons and a search field in the upper right corner.
-![Initial Page](./img/impressions/Pokedec1.png)
+
+<img src="./img/impressions/Pokedec1.png" alt="Initial Page" style="border: 2px solid grey; padding: 2px">
 
 ### Search Field
 The search field can be used to restrict the list of Pokemons buttons to those containing the given string.
-![Search Field](./img/impressions/Pokedec2.png)
+
+<img src="./img/impressions/Pokedec2.png" alt="Search Field" style="border: 2px solid grey; padding: 2px">
 
 ### Modal
 When clicking on a Pokemon button, a modal appears with further information about the Pokemon.
-![Modal](./img/impressions/Pokedec3.png)
+
+<img src="./img/impressions/Pokedec3.png" alt="Modal" style="border: 2px solid grey; padding: 2px">
 
 ## Conclusion
 
